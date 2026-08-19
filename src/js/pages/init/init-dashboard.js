@@ -1,0 +1,4 @@
+initDashboardPage();
+initChrome();
+setupTabs();
+refreshIcons();

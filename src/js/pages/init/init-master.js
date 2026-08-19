@@ -1,0 +1,11 @@
+createCrudModule(document.getElementById('tabKategoriRoot'), CONFIG_CATEGORIES);
+createCrudModule(document.getElementById('tabPenerbitRoot'), CONFIG_PUBLISHERS);
+createCrudModule(document.getElementById('tabRakRoot'), CONFIG_SHELVES);
+createCrudModule(document.getElementById('tabBahasaRoot'), CONFIG_LANGUAGES);
+createCrudModule(document.getElementById('tabFormatRoot'), CONFIG_FORMATS);
+createCrudModule(document.getElementById('tabTagRoot'), CONFIG_TAGS);
+createCrudModule(document.getElementById('tabVendorRoot'), CONFIG_VENDORS);
+createCrudModule(document.getElementById('tabPengadaanRoot'), CONFIG_PROCUREMENTS);
+initChrome();
+setupTabs();
+refreshIcons();

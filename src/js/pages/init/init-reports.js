@@ -1,0 +1,4 @@
+initReportsPage();
+initChrome();
+setupTabs();
+refreshIcons();

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard LibrarySys</title>
+<link rel="stylesheet" href="../css/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../css/fonts.css">
+<link rel="stylesheet" href="../css/shared.css">
+</head>
+<body>
+<div class="app-wrapper">
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon"><i data-lucide="library" ></i></div>
+    <div class="brand-text"><strong>LibrarySys</strong><span>Sistem Perpustakaan</span></div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">Menu Utama</div>
+    <a class="nav-link-item active" href="index.html"><i data-lucide="layout-dashboard" ></i><span>Dashboard</span></a>
+<a class="nav-link-item" href="books.html"><i data-lucide="book-marked" ></i><span>Data Buku</span></a>
+<a class="nav-link-item" href="members.html"><i data-lucide="users" ></i><span>Data Anggota</span></a>
+<a class="nav-link-item" href="loans.html"><i data-lucide="arrow-up-right" ></i><span>Peminjaman</span></a>
+<a class="nav-link-item" href="returns.html"><i data-lucide="corner-down-left" ></i><span>Pengembalian</span></a>
+<a class="nav-link-item" href="status.html"><i data-lucide="clipboard-list" ></i><span>Status Buku</span></a>
+    <div class="sidebar-section-label">Lainnya</div>
+    <a class="nav-link-item" href="master-data.html"><i data-lucide="boxes" ></i><span>Data Lainnya</span></a>
+<a class="nav-link-item" href="reports.html"><i data-lucide="bar-chart-3" ></i><span>Laporan</span></a>
+<a class="nav-link-item" href="layanan.html"><i data-lucide="life-buoy" ></i><span>Layanan</span></a>
+<a class="nav-link-item" href="settings.html"><i data-lucide="settings" ></i><span>Pengaturan</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="storage-note icon-text"><i data-lucide="hard-drive" ></i><span>Data tersimpan di Local Storage</span></div>
+  </div>
+</aside>
+<div class="main-wrapper">
+  <nav class="topbar">
+    <div class="btn-icon" id="sidebarToggle"><i data-lucide="menu" ></i></div>
+    <form class="topbar-search" id="globalSearchForm">
+      <i data-lucide="search" ></i>
+      <input type="text" id="globalSearch" placeholder="Cari buku, anggota, atau transaksi...">
+    </form>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-right">
+      <div class="btn-icon notif-btn" id="notifBtn"><i data-lucide="bell" ></i><span class="notif-dot" id="notifDot"></span></div>
+      <div class="dropdown">
+        <div class="profile-btn" data-bs-toggle="dropdown">
+          <div class="profile-avatar" id="profileAvatar">--</div>
+          <div class="profile-meta"><strong id="profileName">Memuat...</strong><span>Pustakawan</span></div>
+          <i data-lucide="chevron-down" style="width:13px;height:13px;color:var(--text-muted);"></i>
+        </div>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item icon-text" href="settings.html"><i data-lucide="settings" ></i>Pengaturan</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item icon-text" href="#" id="logoutBtn"><i data-lucide="log-out" ></i>Keluar</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="content" id="content">
+    <div class="page-header">
+      <div class="page-title">
+        <div class="icon-badge"><i data-lucide="layout-dashboard" ></i></div>
+        <div><h1>Dashboard</h1><p>Ringkasan aktivitas perpustakaan hari ini</p></div>
+      </div>
+    </div>
+
+    <div class="row g-3 mb-3" id="dashStats"></div>
+    <div class="row g-3 mb-3">
+      <div class="col-lg-7"><div class="section-card h-100">
+        <div class="section-card-head">
+          <h2><i data-lucide="bar-chart-3" ></i>Peminjaman per Bulan</h2>
+          <span class="badge-soft b-slate"><i data-lucide="calendar" ></i>6 bulan terakhir</span>
+        </div>
+        <div class="section-card-body"><div class="chart-box"><canvas id="chartMonthlyLoans"></canvas></div></div>
+      </div></div>
+      <div class="col-lg-5"><div class="section-card h-100">
+        <div class="section-card-head"><h2><i data-lucide="pie-chart" ></i>Status Buku</h2></div>
+        <div class="section-card-body"><div class="chart-box chart-box-doughnut"><canvas id="chartStatusDoughnut"></canvas></div></div>
+      </div></div>
+    </div>
+    <div class="row g-3 mb-3">
+      <div class="col-lg-5"><div class="section-card h-100">
+        <div class="section-card-head"><h2><i data-lucide="trophy" ></i>Top 5 Buku Terpopuler</h2></div>
+        <div class="section-card-body"><div class="chart-box sm"><canvas id="chartTopBooks"></canvas></div></div>
+      </div></div>
+      <div class="col-lg-7"><div class="section-card h-100">
+        <div class="section-card-head">
+          <h2><i data-lucide="history" ></i>Peminjaman Terbaru</h2>
+          <a href="loans.html" class="btn btn-sm btn-light-soft"><i data-lucide="arrow-right" ></i>Lihat Semua</a>
+        </div>
+        <div class="table-responsive-modern"><table class="table table-modern mb-0">
+          <thead><tr><th>ID</th><th>Anggota</th><th>Buku</th><th>Tgl Pinjam</th><th>Jatuh Tempo</th><th>Status</th></tr></thead>
+          <tbody id="recentLoansTbody"></tbody>
+        </table></div>
+      </div></div>
+    </div>
+
+  </main>
+</div>
+</div>
+<div id="notifPanel" style="display:none;position:fixed;top:76px;right:24px;width:320px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 20px 40px rgba(16,24,40,.15);z-index:1060;overflow:hidden;">
+  <div style="padding:.9rem 1.1rem;border-bottom:1px solid var(--border);font-weight:800;font-size:.88rem;">Notifikasi</div>
+  <div id="notifList" style="max-height:320px;overflow-y:auto;"></div>
+</div>
+<div class="modal fade" id="genericCrudModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i data-lucide="plus-circle" id="genericModalIcon"></i><span id="genericModalTitle">Tambah Data</span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="genericCrudForm" novalidate>
+        <div class="modal-body">
+          <input type="hidden" id="genericCrudId">
+          <div class="row g-3" id="genericCrudFields"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light-soft" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary"><i data-lucide="check" ></i>Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="confirmModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-body text-center pt-4">
+        <div class="empty-icon mx-auto" style="background:var(--danger-light);color:var(--danger);"><i data-lucide="triangle-alert" ></i></div>
+        <h3 id="confirmTitle">Hapus data ini?</h3>
+        <p id="confirmMessage" class="text-muted" style="font-size:.83rem;">Tindakan ini tidak dapat dibatalkan.</p>
+      </div>
+      <div class="modal-footer justify-content-center border-0 pb-4">
+        <button type="button" class="btn btn-light-soft" data-bs-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-danger text-white" id="confirmActionBtn"><i data-lucide="trash-2" ></i>Ya, Hapus</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index:1080;" id="toastContainer"></div>
+
+<script src="../js/lib/bootstrap.bundle.min.js"></script>
+<script src="../js/lib/chart.umd.js"></script>
+<script src="../js/lib/lucide.js"></script>
+<script src="../js/core/00-auth-guard.js"></script>
+<script src="../js/core/01-utils.js"></script>
+<script src="../js/core/02-seed-core.js"></script>
+<script src="../js/core/03-seed-extra.js"></script>
+<script src="../js/core/04-ui-shared.js"></script>
+<script src="../js/core/05-generic-crud.js"></script>
+<script src="../js/core/06-configs.js"></script>
+<script src="../js/pages/dashboard.js"></script>
+<script src="../js/pages/init/init-dashboard.js"></script>
+</body>
+</html>

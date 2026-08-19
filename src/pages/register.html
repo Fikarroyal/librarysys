@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Akun LibrarySys</title>
+<link rel="stylesheet" href="../css/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../css/fonts.css">
+<link rel="stylesheet" href="../css/shared.css">
+<link rel="stylesheet" href="../css/auth.css">
+<style>.spin{animation:spin .8s linear infinite;display:inline-flex;}@keyframes spin{to{transform:rotate(360deg);}}</style>
+</head>
+<body class="auth-body">
+<div class="auth-wrapper">
+
+  <div class="auth-visual">
+    <div class="auth-visual-brand">
+      <div class="brand-icon"><i data-lucide="library"></i></div>
+      <strong>LibrarySys</strong>
+    </div>
+
+    <div class="orbit-ring ring1"></div>
+    <div class="orbit-ring ring2"></div>
+    <div class="floating-blob blob1"></div>
+    <div class="floating-blob blob2"></div>
+
+    <div class="auth-scene" id="authScene">
+      <div class="book-wrap">
+        <svg class="book-svg" viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg">
+          <ellipse class="book-shadow" cx="120" cy="180" rx="78" ry="10"></ellipse>
+          <path class="book-edge" d="M120,36 C86,38 50,47 20,58 L16,156 C50,166 86,172 120,174 C154,172 190,166 224,156 L220,58 C190,47 154,38 120,36 Z"></path>
+          <g class="page page-l3"><path d="M120,40 C92,42 63,49 34,58 L31,150 C61,157 90,162 120,164 Z"></path></g>
+          <g class="page page-l2"><path d="M120,40 C95,42 68,48 43,56 L40,147 C68,154 94,158 120,161 Z"></path></g>
+          <g class="page page-l1"><path d="M120,40 C98,42 75,47 53,54 L50,144 C75,150 98,154 120,157 Z"></path></g>
+          <g class="page page-r3"><path d="M120,40 C148,42 177,49 206,58 L209,150 C179,157 150,162 120,164 Z"></path></g>
+          <g class="page page-r2"><path d="M120,40 C145,42 172,48 197,56 L200,147 C172,154 146,158 120,161 Z"></path></g>
+          <g class="page page-r1"><path d="M120,40 C142,42 165,47 187,54 L190,144 C165,150 142,154 120,157 Z"></path></g>
+          <line class="book-spine-line" x1="120" y1="38" x2="120" y2="165"></line>
+        </svg>
+      </div>
+      <div class="floating-card card-a"><i data-lucide="book-plus"></i></div>
+      <div class="floating-card card-b"><i data-lucide="user-plus"></i></div>
+      <div class="floating-card card-c"><i data-lucide="shield-check"></i></div>
+      <div class="floating-card card-d"><i data-lucide="sparkles"></i></div>
+    </div>
+
+    <div class="auth-visual-text">
+      <h2>Mulai Kelola Koleksi Buku Perpustakaan Anda</h2>
+      <p>Buat akun untuk mengakses dashboard, data buku, anggota, dan seluruh fitur LibrarySys.</p>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-card" id="authCard">
+      <div class="auth-card-inner">
+        <div class="auth-mobile-brand">
+          <div class="brand-icon"><i data-lucide="library"></i></div>
+          <strong>LibrarySys</strong>
+        </div>
+
+        <h1>Buat Akun Baru</h1>
+        <p class="auth-sub">Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+
+        <div id="authError" class="auth-alert"></div>
+
+        <form id="registerForm" novalidate>
+          <div class="auth-field">
+            <label for="registerName">Nama Lengkap</label>
+            <div class="auth-input-group">
+              <i data-lucide="user"></i>
+              <input type="text" id="registerName" placeholder="Nama lengkap Anda" required autocomplete="name">
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="registerEmail">Email</label>
+            <div class="auth-input-group">
+              <i data-lucide="mail"></i>
+              <input type="email" id="registerEmail" placeholder="nama@email.com" required autocomplete="email">
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="registerPassword">Kata Sandi</label>
+            <div class="auth-input-group">
+              <i data-lucide="lock"></i>
+              <input type="password" id="registerPassword" placeholder="Minimal 6 karakter" required autocomplete="new-password">
+              <button type="button" class="auth-toggle-pw" data-toggle-password="registerPassword"><i data-lucide="eye"></i></button>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="registerConfirmPassword">Konfirmasi Kata Sandi</label>
+            <div class="auth-input-group">
+              <i data-lucide="lock"></i>
+              <input type="password" id="registerConfirmPassword" placeholder="Ulangi kata sandi" required autocomplete="new-password">
+              <button type="button" class="auth-toggle-pw" data-toggle-password="registerConfirmPassword"><i data-lucide="eye"></i></button>
+            </div>
+          </div>
+          <button type="submit" class="auth-submit" id="registerSubmitBtn"><i data-lucide="user-plus"></i>Daftar</button>
+        </form>
+
+        <div class="auth-divider">Made by Fikarroyal</div>
+        <p class="auth-hint">Akun anda akan disimpan lokal di perangkat ini dan tidak dikirim ke server manapun.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="../js/lib/lucide.js"></script>
+<script src="../js/auth/auth-effects.js"></script>
+<script src="../js/auth/register.js"></script>
+</body>
+</html>

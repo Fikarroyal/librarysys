@@ -1,0 +1,13 @@
+/* Font lokal (self-hosted, tanpa perlu koneksi internet) */
+@import url('./fonts/inter/400.css');
+@import url('./fonts/inter/500.css');
+@import url('./fonts/inter/600.css');
+@import url('./fonts/inter/700.css');
+@import url('./fonts/inter/800.css');
+@import url('./fonts/sora/600.css');
+@import url('./fonts/sora/700.css');
+@import url('./fonts/sora/800.css');
+@import url('./fonts/jetbrains-mono/400.css');
+@import url('./fonts/jetbrains-mono/500.css');
+@import url('./fonts/jetbrains-mono/700.css');
+@import url('./fonts/bebas-neue/400.css');

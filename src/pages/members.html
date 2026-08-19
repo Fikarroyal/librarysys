@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Anggota LibrarySys</title>
+<link rel="stylesheet" href="../css/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../css/fonts.css">
+<link rel="stylesheet" href="../css/shared.css">
+</head>
+<body>
+<div class="app-wrapper">
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon"><i data-lucide="library" ></i></div>
+    <div class="brand-text"><strong>LibrarySys</strong><span>Sistem Perpustakaan</span></div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">Menu Utama</div>
+    <a class="nav-link-item" href="index.html"><i data-lucide="layout-dashboard" ></i><span>Dashboard</span></a>
+<a class="nav-link-item" href="books.html"><i data-lucide="book-marked" ></i><span>Data Buku</span></a>
+<a class="nav-link-item active" href="members.html"><i data-lucide="users" ></i><span>Data Anggota</span></a>
+<a class="nav-link-item" href="loans.html"><i data-lucide="arrow-up-right" ></i><span>Peminjaman</span></a>
+<a class="nav-link-item" href="returns.html"><i data-lucide="corner-down-left" ></i><span>Pengembalian</span></a>
+<a class="nav-link-item" href="status.html"><i data-lucide="clipboard-list" ></i><span>Status Buku</span></a>
+    <div class="sidebar-section-label">Lainnya</div>
+    <a class="nav-link-item" href="master-data.html"><i data-lucide="boxes" ></i><span>Data Lainnya</span></a>
+<a class="nav-link-item" href="reports.html"><i data-lucide="bar-chart-3" ></i><span>Laporan</span></a>
+<a class="nav-link-item" href="layanan.html"><i data-lucide="life-buoy" ></i><span>Layanan</span></a>
+<a class="nav-link-item" href="settings.html"><i data-lucide="settings" ></i><span>Pengaturan</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="storage-note icon-text"><i data-lucide="hard-drive" ></i><span>Data tersimpan di Local Storage</span></div>
+  </div>
+</aside>
+<div class="main-wrapper">
+  <nav class="topbar">
+    <div class="btn-icon" id="sidebarToggle"><i data-lucide="menu" ></i></div>
+    <form class="topbar-search" id="globalSearchForm">
+      <i data-lucide="search" ></i>
+      <input type="text" id="globalSearch" placeholder="Cari buku, anggota, atau transaksi...">
+    </form>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-right">
+      <div class="btn-icon notif-btn" id="notifBtn"><i data-lucide="bell" ></i><span class="notif-dot" id="notifDot"></span></div>
+      <div class="dropdown">
+        <div class="profile-btn" data-bs-toggle="dropdown">
+          <div class="profile-avatar" id="profileAvatar">--</div>
+          <div class="profile-meta"><strong id="profileName">Memuat...</strong><span>Pustakawan</span></div>
+          <i data-lucide="chevron-down" style="width:13px;height:13px;color:var(--text-muted);"></i>
+        </div>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item icon-text" href="settings.html"><i data-lucide="settings" ></i>Pengaturan</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item icon-text" href="#" id="logoutBtn"><i data-lucide="log-out" ></i>Keluar</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="content" id="content">
+    <div class="page-header">
+      <div class="page-title">
+        <div class="icon-badge"><i data-lucide="users" ></i></div>
+        <div><h1>Data Anggota</h1><p>Kelola anggota, blacklist, kartu, dan jenis keanggotaan</p></div>
+      </div>
+    </div>
+
+    <div class="tab-strip"><button type="button" class="tab-btn active" data-tab-btn="anggota"><i data-lucide="users" ></i>Data Anggota</button>
+<button type="button" class="tab-btn " data-tab-btn="blacklist"><i data-lucide="ban" ></i>Blacklist</button>
+<button type="button" class="tab-btn " data-tab-btn="kartu"><i data-lucide="id-card" ></i>Kartu Anggota</button>
+<button type="button" class="tab-btn " data-tab-btn="jka"><i data-lucide="id-card" ></i>Jenis Keanggotaan</button>
+<button type="button" class="tab-btn " data-tab-btn="jurusan"><i data-lucide="graduation-cap" ></i>Jurusan/Kelas</button></div>
+    <div class="tab-panel active" data-tab-panel="anggota">
+      <div class="section-card">
+        <div class="section-card-head">
+          <div class="filter-bar">
+            <div class="search-box"><i data-lucide="search" ></i><input type="text" class="form-control form-control-sm" id="memberSearchInput" placeholder="Cari nama, NIM, atau email..."></div>
+            <select class="form-select form-select-sm" id="memberStatusFilter"><option value="">Semua Status</option><option value="Aktif">Aktif</option><option value="Nonaktif">Nonaktif</option></select>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" id="btnAddMember"><i data-lucide="user-plus" ></i>Tambah Anggota</button>
+        </div>
+        <div class="table-responsive-modern">
+          <table class="table table-modern mb-0">
+            <thead><tr><th>Anggota</th><th>NIM/NIS</th><th>Jenis Kelamin</th><th>Kontak</th><th>Tgl Daftar</th><th>Status</th><th>Aksi</th></tr></thead>
+            <tbody id="membersTbody"></tbody>
+          </table>
+        </div>
+        <div id="membersPagination"></div>
+      </div>
+    </div>
+    <div class="tab-panel" data-tab-panel="blacklist"><div id="tabBlacklistRoot"></div></div>
+    <div class="tab-panel" data-tab-panel="kartu"><div id="tabKartuRoot"></div></div>
+    <div class="tab-panel" data-tab-panel="jka"><div id="tabJkaRoot"></div></div>
+    <div class="tab-panel" data-tab-panel="jurusan"><div id="tabJurusanRoot"></div></div>
+
+  </main>
+</div>
+</div>
+<div id="notifPanel" style="display:none;position:fixed;top:76px;right:24px;width:320px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 20px 40px rgba(16,24,40,.15);z-index:1060;overflow:hidden;">
+  <div style="padding:.9rem 1.1rem;border-bottom:1px solid var(--border);font-weight:800;font-size:.88rem;">Notifikasi</div>
+  <div id="notifList" style="max-height:320px;overflow-y:auto;"></div>
+</div>
+<div class="modal fade" id="genericCrudModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i data-lucide="plus-circle" id="genericModalIcon"></i><span id="genericModalTitle">Tambah Data</span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="genericCrudForm" novalidate>
+        <div class="modal-body">
+          <input type="hidden" id="genericCrudId">
+          <div class="row g-3" id="genericCrudFields"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light-soft" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary"><i data-lucide="check" ></i>Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="confirmModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-body text-center pt-4">
+        <div class="empty-icon mx-auto" style="background:var(--danger-light);color:var(--danger);"><i data-lucide="triangle-alert" ></i></div>
+        <h3 id="confirmTitle">Hapus data ini?</h3>
+        <p id="confirmMessage" class="text-muted" style="font-size:.83rem;">Tindakan ini tidak dapat dibatalkan.</p>
+      </div>
+      <div class="modal-footer justify-content-center border-0 pb-4">
+        <button type="button" class="btn btn-light-soft" data-bs-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-danger text-white" id="confirmActionBtn"><i data-lucide="trash-2" ></i>Ya, Hapus</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index:1080;" id="toastContainer"></div>
+
+<div class="modal fade" id="memberModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i data-lucide="user-plus" ></i><span id="memberModalTitle">Tambah Anggota</span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="memberForm" novalidate>
+        <div class="modal-body">
+          <input type="hidden" id="memberId">
+          <div class="row g-3">
+            <div class="col-md-8"><label class="form-label">Nama Lengkap</label><input type="text" class="form-control" id="memberName" required><div class="invalid-feedback">Nama wajib diisi.</div></div>
+            <div class="col-md-4"><label class="form-label">NIM / NIS</label><input type="text" class="form-control" id="memberNis" required><div class="invalid-feedback">NIM/NIS wajib diisi.</div></div>
+            <div class="col-md-4"><label class="form-label">Jenis Kelamin</label><select class="form-select" id="memberGender" required><option value="">Pilih</option><option value="L">Laki-laki</option><option value="P">Perempuan</option></select><div class="invalid-feedback">Wajib dipilih.</div></div>
+            <div class="col-md-4"><label class="form-label">Email</label><input type="email" class="form-control" id="memberEmail" required><div class="invalid-feedback">Email tidak valid.</div></div>
+            <div class="col-md-4"><label class="form-label">Nomor Telepon</label><input type="text" class="form-control" id="memberPhone" required><div class="invalid-feedback">Nomor telepon wajib diisi.</div></div>
+            <div class="col-md-8"><label class="form-label">Alamat</label><input type="text" class="form-control" id="memberAddress" required><div class="invalid-feedback">Alamat wajib diisi.</div></div>
+            <div class="col-md-4"><label class="form-label">Tanggal Daftar</label><input type="date" class="form-control" id="memberRegisterDate" required><div class="invalid-feedback">Tanggal wajib diisi.</div></div>
+            <div class="col-md-4"><label class="form-label">Status</label><select class="form-select" id="memberStatus" required><option value="Aktif">Aktif</option><option value="Nonaktif">Nonaktif</option></select></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light-soft" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary"><i data-lucide="check" ></i>Simpan Anggota</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="detailModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i data-lucide="info" ></i><span id="detailModalTitle">Detail</span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="detailModalBody"></div>
+    </div>
+  </div>
+</div>
+<script src="../js/lib/bootstrap.bundle.min.js"></script>
+<script src="../js/lib/chart.umd.js"></script>
+<script src="../js/lib/lucide.js"></script>
+<script src="../js/core/00-auth-guard.js"></script>
+<script src="../js/core/01-utils.js"></script>
+<script src="../js/core/02-seed-core.js"></script>
+<script src="../js/core/03-seed-extra.js"></script>
+<script src="../js/core/04-ui-shared.js"></script>
+<script src="../js/core/05-generic-crud.js"></script>
+<script src="../js/core/06-configs.js"></script>
+<script src="../js/pages/members.js"></script>
+<script src="../js/pages/init/init-members.js"></script>
+</body>
+</html>
