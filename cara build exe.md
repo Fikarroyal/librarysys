@@ -1,18 +1,18 @@
-# Panduan Membuat File `.exe` Sendiri
+# Panduan Membuat File `.exe`
 
 Panduan ini menjelaskan langkah demi langkah cara membuat file `.exe` (Windows) dan `.app`/`.dmg` (Mac) dari project LibrarySys Desktop, langsung dari komputer Anda sendiri.
 
 Ada 3 cara. Pilih salah satu sesuai kebutuhan:
 
-- **Cara 1** — Paling gampang & paling andal: build lewat GitHub Actions (gratis, tidak perlu install apa-apa selain akun GitHub).
-- **Cara 2** — Build langsung di Mac untuk hasil `.app`/`.dmg` (Mac).
-- **Cara 3** — Build `.exe` langsung dari Mac (perlu install Wine tambahan).
+- **Cara 1**, paling mudah: build lewat GitHub Actions (gratis, tidak perlu install apa-apa selain akun GitHub).
+- **Cara 2**, build langsung di Mac untuk hasil `.app`/`.dmg` (Mac).
+- **Cara 3**, build `.exe` langsung dari Mac (perlu install Wine tambahan).
 
 ---
 
 ## Persiapan (wajib untuk semua cara)
 
-1. Install **Node.js** (versi 18 ke atas) dari [nodejs.org](https://nodejs.org) — pilih versi **LTS**. Setelah install, cek di Terminal:
+1. Install **Node.js** (versi 18 ke atas) dari [nodejs.org](https://nodejs.org), pilih versi **LTS**. Setelah install, cek di Terminal:
    ```bash
    node -v
    npm -v
@@ -24,9 +24,9 @@ Ada 3 cara. Pilih salah satu sesuai kebutuhan:
    cd librarysys-final
    npm install
    ```
-   Proses ini akan mengunduh Electron dan semua library yang dibutuhkan — ukurannya lumayan besar (±300–500MB), jadi butuh koneksi internet yang stabil. Tunggu sampai selesai (biasanya 1–5 menit).
+   Proses ini akan mengunduh Electron dan semua library yang dibutuhkan dan ukurannya lumayan besar (±300–500MB), jadi butuh koneksi internet yang stabil. Tunggu sampai selesai (biasanya 1–5 menit).
 
-3. Untuk memastikan semuanya berjalan normal sebelum di-build, coba jalankan dulu dalam mode pengembangan:
+3. Untuk memastikan semuanya berjalan normal sebelum dibuild, coba jalankan dulu dalam mode pengembangan:
    ```bash
    npm start
    ```
@@ -34,9 +34,9 @@ Ada 3 cara. Pilih salah satu sesuai kebutuhan:
 
 ---
 
-## Cara 1 — Build Otomatis via GitHub Actions (Direkomendasikan)
+## Cara 1: Build Otomatis via GitHub Actions (Direkomendasikan)
 
-Ini cara paling andal karena `.exe` dan `.dmg` di-build langsung oleh mesin Windows/Mac asli milik GitHub — bukan hasil "simulasi" dari OS lain. Gratis untuk repository publik maupun privat (dengan kuota gratis bulanan yang cukup besar).
+Ini cara paling andal karena `.exe` dan `.dmg` di-build langsung oleh mesin Windows/Mac asli milik GitHub, bukan hasil "simulasi" dari OS lain. Gratis untuk repository publik maupun privat (dengan kuota gratis bulanan yang cukup besar).
 
 1. Buat akun GitHub kalau belum punya: [github.com](https://github.com)
 2. Buat repository baru (bisa **Private** kalau tidak ingin publik), lalu upload seluruh isi folder `librarysys-final` ke repository tersebut. Cara termudah lewat Terminal:
@@ -60,7 +60,7 @@ Ini cara paling andal karena `.exe` dan `.dmg` di-build langsung oleh mesin Wind
 
 ---
 
-## Cara 2 — Build Langsung di Mac (untuk `.app` / `.dmg`)
+## Cara 2: Build Langsung di Mac (untuk `.app` / `.dmg`)
 
 Karena Anda menjalankan ini di Mac, build untuk Mac akan berjalan mulus tanpa alat tambahan apa pun.
 
@@ -82,9 +82,9 @@ npm run build:mac -- --arm64    # khusus Apple Silicon
 
 ---
 
-## Cara 3 — Build `.exe` Langsung dari Mac (opsional, perlu Wine)
+## Cara 3: Build `.exe` Langsung dari Mac (opsional, perlu Wine)
 
-Electron-builder butuh **Wine** untuk menyisipkan ikon dan info versi ke dalam file `.exe` saat build dari Mac/Linux. Tanpa Wine, proses build Windows akan gagal di Mac.
+Electron builder butuh **Wine** untuk menyisipkan ikon dan info versi ke dalam file `.exe` saat build dari Mac/Linux. Tanpa Wine, proses build Windows akan gagal di Mac.
 
 1. Install Wine lewat Homebrew (kalau belum punya Homebrew, install dulu dari [brew.sh](https://brew.sh)):
    ```bash
@@ -102,7 +102,7 @@ Electron-builder butuh **Wine** untuk menyisipkan ikon dan info versi ke dalam f
    - `LibrarySys Setup 1.0.0.exe` — installer (NSIS)
    - `LibrarySys 1.0.0.exe` — versi portable, tinggal dijalankan tanpa instalasi
 
-**Kalau proses build gagal atau macet**, biasanya karena Wine belum terkonfigurasi dengan benar di Mac versi terbaru — di sinilah **Cara 1 (GitHub Actions)** jadi jauh lebih andal karena tidak bergantung pada Wine sama sekali.
+**Kalau proses build gagal atau macet**, biasanya karena Wine belum terkonfigurasi dengan benar di Mac versi terbaru, di sinilah **Cara 1 (GitHub Actions)** jadi jauh lebih andal karena tidak bergantung pada Wine sama sekali.
 
 ---
 
@@ -117,5 +117,3 @@ Electron-builder butuh **Wine** untuk menyisipkan ikon dan info versi ke dalam f
 | Ingin ganti nama aplikasi / versi | Edit `"productName"` dan `"version"` di file `package.json` |
 
 ---
-
-Kalau ada langkah yang error atau butuh dibantu lebih lanjut, kirim saja pesan errornya — saya bantu selesaikan.
